@@ -1,0 +1,24 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "base project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "helloscript": "it is my first script! hello , script!!!",
+    "show-all-in-this-folder": "ls -al",
+    "start": "node ./index.js",
+    "begin": "./start.sh"
+  },
+  "bugs": {
+    "url": "http://github.com/vasya/project/issues",
+    "email": "vasya@mail.com"
+  },
+  "keywords": ["first project", "node project"],
+  "author": "Vasya Vasya",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {}
+}
