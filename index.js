@@ -1,14 +1,13 @@
-const os = require("os");
-const util = require("util");
-const path = require("path");
+const http = require('http');
 
-const userHostName = os.hostname();
-const userHomeDir = os.homedir();
-const userCore = os.cpus();
-const userInfo = os.userInfo();
+const server = http.createServer(requestListener);
+server.listen(3000);
 
-console.log(userInfo);
-console.log(userHostName);
-console.log(userHomeDir);
-console.log(userCore);
+let count = 0;
+
+function requestListener(request, response){
+    ++count;
+    console.log(`It is request listener function. count = ${count}`);
+    response.end(`Hello, client! msg # ${count}`);
+}
 
