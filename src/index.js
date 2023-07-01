@@ -1,23 +1,32 @@
-const greeting = require('./greeting.js');
-//const {add, sub, div, mult} = require('./calc.js')
-const calc = require('./calc.js')
+const fs = require("fs");
+const path = require("path");
+const util = require("util");
 
-const result = greeting('John', 'Smith');
-console.log('RESULT:')
-console.log(result);
+//--------------------------
+const text1 = fs.readFileSync(path.resolve("./src/README.md"), {
+  encoding: "utf-8",
+});
 
-console.log('CALC module');
-console.log(calc);
+console.log("Sync file reading");
+console.log(text1);
 
-console.log(calc.add(2,2));
-console.log(calc.sub(2,2));
-console.log(calc.div(2,2));
-console.log(calc.mult(2,2));
+//-----------------------------
+const text2 = fs.readFile(
+  path.resolve("./src/README.md"),
+  { encoding: "utf-8" },
+  (error, data) => {
+    if (error) {
+      console.log("Error file reading");
+    } else {
+      console.log("Data:", data);
+    }
+  }
+);
+console.log("ASync file reading");
+//--------------------------------
 
-const os = require('os');
+const readAsync = util.promisify(fs.readFileSync);
 
-const userInfo = os.userInfo();
-console.log(userInfo);
-console.log(os.machine);
-
-
+readAsync("./src/README.md", { encoding: "utf-8" })
+  .then((data) => console.log(data))
+  .catch((err) => console.log("Error file reading"));
