@@ -30,3 +30,11 @@ const readAsync = util.promisify(fs.readFileSync);
 readAsync("./src/README.md", { encoding: "utf-8" })
   .then((data) => console.log(data))
   .catch((err) => console.log("Error file reading"));
+
+const content = fs.readdirSync('./src');
+console.log('current dir content:');
+console.log(content);
+
+console.log('----------------');
+console.log('__dirname', __dirname);
+console.log('__filename', __filename);
