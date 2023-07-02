@@ -28,11 +28,19 @@ module.exports = function requestListener(req, res) {
             res.statusCode = 500;
             res.end("Server data error!");
           });
-      //}
-    } else {
-      res.statusCode = 404;
-      res.end("Page Not Found");
-    }}
+      } else {
+        readFile(path.join(__dirname, "/pages/", "404.html"))
+          .then((data) => {
+            res.statusCode = 404;
+            res.setHeader("Content-Type", "text/html");
+            res.end(data);
+          })
+          .catch((error) => {
+            res.statusCode = 500;
+            res.end("Server data error!");
+          });
+      }
+    }
   } else {
     res.statusCode = 400;
     res.end("Bad server request");
