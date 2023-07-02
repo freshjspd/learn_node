@@ -17,22 +17,24 @@ module.exports = function requestListener(req, res) {
     if (regHTMLPage.test(page)) {
       const pagePath = path.join(__dirname, "/pages/", page);
       console.log(pagePath);
-      readFile(pagePath)
-        .then((data) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "text/html");
-          res.end(data);
-        })
-        .catch((error) => {
-          res.statusCode = 500;
-          res.end("Server data error!");
-        });
+      if (fs.existsSync(pagePath, { encoding: "utf-8" })) {
+        readFile(pagePath)
+          .then((data) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "text/html");
+            res.end(data);
+          })
+          .catch((error) => {
+            res.statusCode = 500;
+            res.end("Server data error!");
+          });
+      //}
     } else {
-        res.statusCode = 404;
-        res.end('Page Not Found');
-      }
+      res.statusCode = 404;
+      res.end("Page Not Found");
+    }}
   } else {
     res.statusCode = 400;
-    res.end('Bad server request');
+    res.end("Bad server request");
   }
 };
