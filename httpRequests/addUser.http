@@ -1,0 +1,23 @@
+POST http://127.0.0.1:5000/users HTTP/1.1
+Content-Type: application/json
+
+{
+"gender":"female",
+"name":{"title":"Ms","first":"Jennie","last":"Jennings"},
+"location":{
+"street":{"number":6022,"name":"Fairview St"},
+"city":"Sunshine Coast",
+"state":"Tasmania",
+"country":"Australia",
+"postcode":9273
+},
+"email":"jennie.jennings@example.com",
+"login":{
+"uuid":"77e894cb-0961-4eb3-a17b-0bf4a30b952d",
+"username":"sadbird753",
+"sha1":"9eacd9d26e36f270dc3bc82af0d3259648078c2d"
+},
+"registered":{"date":"2007-05-27T03:09:22.443Z","age":16},
+"phone":"02-0763-1855",
+"id":{"name":"TFN","value":"895653307"}
+}
