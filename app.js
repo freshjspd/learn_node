@@ -9,6 +9,7 @@ app.use("/", express.static("public"));
 //db
 const usersDB = [
   {
+    id: 1,
     gender: "female",
     name: { title: "Ms", first: "Jennie", last: "Jennings" },
     location: {
@@ -25,10 +26,10 @@ const usersDB = [
       sha1: "9eacd9d26e36f270dc3bc82af0d3259648078c2d",
     },
     registered: { date: "2007-05-27T03:09:22.443Z", age: 16 },
-    phone: "02-0763-1855",
-    id: { name: "TFN", value: "895653307" },
+    phone: "02-0763-1855"
   },
   {
+    id: 2,
     gender: "female",
     name: { title: "Mrs", first: "Bernabé", last: "Villanueva" },
     location: {
@@ -45,10 +46,10 @@ const usersDB = [
       sha1: "ff6068af6b5f9d81f5feb07e1e6e34f64e417de1",
     },
     registered: { date: "2017-07-29T02:50:45.096Z", age: 5 },
-    phone: "(645) 861 1319",
-    id: { name: "NSS", value: "67 75 12 3537 2" },
+    phone: "(645) 861 1319"
   },
   {
+    id: 3,
     gender: "male",
     name: { title: "Mr", first: "Jack", last: "Gardner" },
     location: {
@@ -65,10 +66,10 @@ const usersDB = [
       sha1: "8874e0fcbc36e3258c117c28e7d71a8d3b389a8e",
     },
     registered: { date: "2007-05-31T21:20:54.251Z", age: 16 },
-    phone: "017684 68698",
-    id: { name: "NINO", value: "XC 55 73 69 K" },
+    phone: "017684 68698"
   },
   {
+    id: 4,
     gender: "female",
     name: { title: "Mademoiselle", first: "Yvonne", last: "Lemoine" },
     location: {
@@ -85,10 +86,10 @@ const usersDB = [
       sha1: "4a27e117e4f0d515ab548627281c4bf32bc39938",
     },
     registered: { date: "2022-01-27T20:00:01.480Z", age: 1 },
-    phone: "077 273 42 22",
-    id: { name: "AVS", value: "756.9842.4873.67" },
+    phone: "077 273 42 22"
   },
   {
+    id: 5,
     gender: "male",
     name: { title: "Mr", first: "Nobre", last: "da Rocha" },
     location: {
@@ -105,10 +106,10 @@ const usersDB = [
       sha1: "342755a5363675279e7b3ed2547b2cdd0a90efd4",
     },
     registered: { date: "2009-05-06T20:41:56.135Z", age: 14 },
-    phone: "(32) 8615-0218",
-    id: { name: "CPF", value: "260.269.529-34" },
+    phone: "(32) 8615-0218"
   },
   {
+    id: 6,
     gender: "male",
     name: { title: "Mr", first: "Brennan", last: "Gibson" },
     location: {
@@ -125,8 +126,7 @@ const usersDB = [
       sha1: "0ed48c804fbecec3cd1dc869a4aaafe3adb33a55",
     },
     registered: { date: "2009-09-09T17:48:22.183Z", age: 13 },
-    phone: "(414) 479-1875",
-    id: { name: "SSN", value: "422-95-1828" },
+    phone: "(414) 479-1875"
   },
 ];
 
@@ -136,7 +136,10 @@ class Users{
         this.count = this.users.length;
     }
     createUser(user){}
-    getUserById(id){}
+    getUserById(id){
+        const foundIndex = this.users.findIndex(u => u.id === Number(id));
+        return this.users[foundIndex];
+    }
     getAllUsers(){
         return [...this.users];
     }
@@ -155,7 +158,11 @@ app.get("/users", (req, res) => {
     res.status(200).send(data);
 });
 // get user by id
-app.get("users/id", (req, res) => {});
+app.get("/users/:id", (req, res) => {
+    const {id} = req.params;
+    const foundUser = usersInstance.getUserById(id);
+    res.status(200).send(foundUser);
+});
 // create new user
 app.post("/users", (req, res) => {});
 // update user by id
