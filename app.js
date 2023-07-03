@@ -155,7 +155,11 @@ class Users{
         };
         return this.users[foundIndex];
     }
-    deleteUser(id){}
+    deleteUser(id){
+      const foundIndex = this.users.findIndex(u => u.id === Number(id));
+      //this.count--;
+      return foundIndex === -1 ? null : this.users.splice(foundIndex, 1);
+    }
 }
 
 const usersInstance = new Users(usersDB);
@@ -188,6 +192,10 @@ app.patch("/users/:id", (req, res) => {
     res.status(200).send(foundUser);
 });
 // delete user by id
-app.delete("/users/id", (req, res) => {});
+app.delete("/users/:id", (req, res) => {
+  const {id} = req.params;
+  const foundUser = usersInstance.deleteUser(id);
+  res.status(200).send(foundUser);
+});
 
 module.exports = app;
