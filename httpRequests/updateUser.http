@@ -1,0 +1,18 @@
+PATCH http://localhost:5000/users/7 HTTP/1.1
+Content-Type: application/json
+
+{
+    "location": {
+      "street": { "number": 111, "name": "Central B." },
+      "city": "Super town",
+      "state": "Tasmania",
+      "country": "Australia",
+      "postcode": 3333
+    },
+    "car": {
+        "name": "toyota",
+        "color": "red",
+        "year": 2023,
+        "engine": "super-p-engine 2023 xpdf234nv"
+    }
+}

@@ -147,7 +147,14 @@ class Users{
     getAllUsers(){
         return [...this.users];
     }
-    updateUser(id, info){}
+    updateUser(id, info){
+        const foundIndex = this.users.findIndex(u => u.id === Number(id));
+        this.users[foundIndex] = {
+            ...this.users[foundIndex],
+            ...info
+        };
+        return this.users[foundIndex];
+    }
     deleteUser(id){}
 }
 
@@ -174,7 +181,12 @@ app.post("/users", (req, res) => {
     res.status(201).send(newUser);
 });
 // update user by id
-app.patch("/users/id", (req, res) => {});
+app.patch("/users/:id", (req, res) => {
+    const {id} = req.params;
+    const {body} = req;
+    const foundUser = usersInstance.updateUser(id, body);
+    res.status(200).send(foundUser);
+});
 // delete user by id
 app.delete("/users/id", (req, res) => {});
 
