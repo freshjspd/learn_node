@@ -142,7 +142,7 @@ class Users{
     }
     getUserById(id){
         const foundIndex = this.users.findIndex(u => u.id === Number(id));
-        return this.users[foundIndex];
+        return foundIndex === -1 ? null : this.users[foundIndex];
     }
     getAllUsers(){
         return [...this.users];
@@ -153,7 +153,7 @@ class Users{
             ...this.users[foundIndex],
             ...info
         };
-        return this.users[foundIndex];
+        return foundIndex === -1 ? null : this.users[foundIndex];
     }
     deleteUser(id){
       const foundIndex = this.users.findIndex(u => u.id === Number(id));
