@@ -137,7 +137,9 @@ class Users{
     }
     createUser(user){}
     getUserById(id){}
-    getAllUsers(){}
+    getAllUsers(){
+        return [...this.users];
+    }
     updateUser(id, info){}
     deleteUser(id){}
 }
@@ -148,7 +150,10 @@ const usersInstance = new Users(usersDB);
 // controller for user
 
 // get all users
-app.get("/users", (req, res) => {});
+app.get("/users", (req, res) => {
+    const data = usersInstance.getAllUsers();
+    res.status(200).send(data);
+});
 // get user by id
 app.get("users/id", (req, res) => {});
 // create new user
