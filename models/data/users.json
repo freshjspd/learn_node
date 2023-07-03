@@ -1,0 +1,22 @@
+[
+    {
+        "login": "tom123",
+        "password": "qwerty"
+    },
+    {
+        "login": "sunny",
+        "password": "qwerty"
+    },    
+    {
+        "login": "nike7",
+        "password": "qwerty"
+    },
+    {
+        "login": "john.smith",
+        "password": "qwerty"
+    },
+    {
+        "login": "kate_adson",
+        "password": "qwerty"
+    }  
+]
