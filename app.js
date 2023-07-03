@@ -135,7 +135,11 @@ class Users{
         this.users = [...data];
         this.count = this.users.length;
     }
-    createUser(user){}
+    createUser(user){
+        this.count++;
+        this.users.push({...user, id: this.count});
+        return this.users[this.count - 1];
+    }
     getUserById(id){
         const foundIndex = this.users.findIndex(u => u.id === Number(id));
         return this.users[foundIndex];
@@ -164,7 +168,11 @@ app.get("/users/:id", (req, res) => {
     res.status(200).send(foundUser);
 });
 // create new user
-app.post("/users", (req, res) => {});
+app.post("/users", (req, res) => {
+    const {body} = req;
+    const newUser = usersInstance.createUser(body);
+    res.status(201).send(newUser);
+});
 // update user by id
 app.patch("/users/id", (req, res) => {});
 // delete user by id
