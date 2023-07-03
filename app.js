@@ -130,6 +130,20 @@ const usersDB = [
   },
 ];
 
+class Users{
+    constructor(data){
+        this.users = [...data];
+        this.count = this.users.length;
+    }
+    createUser(user){}
+    getUserById(id){}
+    getAllUsers(){}
+    updateUser(id, info){}
+    deleteUser(id){}
+}
+
+const usersInstance = new Users(usersDB);
+
 //CRUD for user
 // controller for user
 
