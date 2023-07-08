@@ -13,10 +13,14 @@ class Product {
     return foundIndex == -1 ? null : this.products[foundIndex];
   }
   createProduct(info) {
-    k++;
-    const newProduct = this.products.push({ ...info, id: k });
+    this.k++;
+    console.log('k=',this.k);
+    const newProduct = { ...info, id: this.k };
+    this.products.push(newProduct);
+    console.log('new product');
+    console.log(newProduct);
     return newProduct;
-    // return this.products.push({...info, id: ++k});
+    // return this.products.push({...info, id: ++this.k});
   }
   updateProductById(id, info) {
     const foundIndex = this.products.findIndex((p) => p.id == id);
