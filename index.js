@@ -34,5 +34,19 @@ User.findAll(
 ).then(console.log);
 */
 
+/*
 // найти 2 юзера
 User.findByPk(2).then(console.log);
+*/
+
+//User.findAll().then(console.log);
+
+User.destroy({
+    where: {id: 1}
+});
+
+User.destroy({
+    where: {email: "name1@mail.com"}
+});
+
+
